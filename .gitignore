@@ -1,0 +1,44 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# C++ compiled files
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Build directories
+bin/*
+!bin/.gitkeep
+build/
+Build/
+out/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.clangd/
+compile_commands.json
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Test and temporary files
+test/*.o
+test/*.out
+*.tmp
+*.log
