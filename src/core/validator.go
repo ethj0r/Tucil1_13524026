@@ -10,7 +10,11 @@ func isValid(queens []Cell) bool {
 			//check row col diag
 			if q1.Row == q2.Row return false
 			if q1.Col == Q2.Col return false
-			if math.Abs(float64(q1.Row-q2.Row)) == math.Abs(float64(q1.Col-q2.Col))
+
+			// if math.Abs(float64(q1.Row-q2.Row)) == math.Abs(float64(q1.Col-q2.Col))
+			//check orthogonally adjacent
+			if (q1.Row==q2.Row && math.Abs(q1.Col-q2.Col)==1 ||
+				q1.Col==q2.Col && math.Abs(q1.Row-q2.Row)==1) return false
 		}
 	}
 	return true
