@@ -1,5 +1,8 @@
 package core
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func isValid(queens []Cell) bool {
 	n := len(queens)
@@ -8,13 +11,19 @@ func isValid(queens []Cell) bool {
 			q1, q2 := queens[i], queens[j]
 
 			//check row col diag
-			if q1.Row == q2.Row return false
-			if q1.Col == Q2.Col return false
+			if q1.Row == q2.Row {
+				return false
+			}
+			if q1.Col == q2.Col {
+				return false
+			}
 
 			// if math.Abs(float64(q1.Row-q2.Row)) == math.Abs(float64(q1.Col-q2.Col))
 			//check orthogonally adjacent
-			if (q1.Row==q2.Row && math.Abs(q1.Col-q2.Col)==1 ||
-				q1.Col==q2.Col && math.Abs(q1.Row-q2.Row)==1) return false
+			if (q1.Row==q2.Row && math.Abs(float64(q1.Col-q2.Col))==1 ||
+				q1.Col==q2.Col && math.Abs(float64(q1.Row-q2.Row))==1) {
+				return false
+			}
 		}
 	}
 	return true
@@ -26,7 +35,7 @@ func validateInput(board *Board) error {
 	}
 	for _, row := range board.Grid {
 		if len(row) != board.Size {
-			return fmt.Erorrf("Board is not square!")
+			return fmt.Errorf("Board is not square!")
 		}
 	}
 	return nil
