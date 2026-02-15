@@ -27,9 +27,9 @@ type Board struct
 	Regions []Region
 }
 
-// parseBoard membaca file board config
+// ParseBoard membaca file board config
 // @return Board struct yg sudah terisi data dari file input
-func parseBoard(filename string) (*Board, error) {
+func ParseBoard(filename string) (*Board, error) {
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, fmt.Errorf("Failed to open file: %w", err)
@@ -86,14 +86,97 @@ func (b *Board) extractRegions() {
 	for row := 0; row < b.Size; row++ {
 		for col := 0; col < b.Size; col++ {
 			letter := b.Grid[row][col]
-			regionMap[letter] = append(regionMap[letter], Cell{row, col})
+			regionMap[letter] = append(regionMap[letter], Cell{Row: row, Col: col})
 		}
 	}
 
+	b.Regions = []Region{}
 	for letter, cells := range regionMap {
 		b.Regions = append(b.Regions, Region{
 			Letter: letter,
 			Cells:  cells,
 		})
+	}
+}
+
+func (b *Board) Validate() error {
+	if b.Size == 0 {
+		return fmt.Errorf("Board is empty")
+	}
+	for i, row := range b.Grid {
+		if len(row) != b.Size {
+			return fmt.Errorf("Row %d has length %d, expected %d", i, len(row), b.Size)
+		}
+	}
+
+	if len(b.Regions) != b.Size {
+		return fmt.Errorf("Invalid board: %d regions but board size is %d", len(b.Regions), b.Size)
+	}
+
+	for _, region := range b.Regions {
+		if len(region.Cells) == 0 {
+			return fmt.Errorf("Region '%c' has no cells", region.Letter)
+		}
+	}
+
+	totalCells := 0
+	for _, region := range b.Regions {
+		totalCells += len(region.Cells)
+	}
+	expectedCells := b.Size*b.Size
+	if totalCells != expectedCells {
+		return fmt.Errorf("Invalid board: %d total cells, expected %d", totalCells, expectedCells)
+	}
+	
+	return nil
+}
+
+func (b *Board) PrintBoard() {
+	fmt.Println("Board:")
+	for _, row := range b.Grid {
+		for _, cell := range row {
+			fmt.Printf("%c ", cell)
+		}
+		fmt.Println()
+	}
+}
+
+func (b *Board) PrintBoardWithQueens(queens []Cell) {
+	queenMap := make(map[Cell]bool)
+	for _, q := range queens {
+		queenMap[q] = true
+	}
+
+	fmt.Println("Solution:")
+	for row:=0; row<b.Size; row++ {
+		for col:=0; col<b.Size; col++ {
+			cell := Cell{Row: row, Col: col}
+			if queenMap[cell] {
+				fmt.Print("# ")
+			} else {
+				fmt.Printf("%c ", b.Grid[row][col])
+			}
+		}
+		fmt.Println()
+	}
+}
+
+func (b *Board) GetRegionByLetter (letter rune) *Region {
+	for i := range b.Regions {
+		if b.Regions[i].Letter == letter {
+			return &b.Regions[i]
+		}
+	}
+	return nil
+}
+
+func (b *Board) PrintRegions() {
+	fmt.Printf("Total regions: %d\n", len(b.Regions))
+	for _, region := range b.Regions {
+		fmt.Printf("Region '%c': %d cells - ", region.Letter, len(region.Cells))
+		for _, cell := range region.Cells {
+			fmt.Printf("(%d,%d) ", cell.Row, cell.Col)
+		}
+		fmt.Println()
 	}
 }
