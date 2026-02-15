@@ -23,7 +23,7 @@ func NewSolver (board *Board) *Solver {
 	}
 }
 
-func (s *Solver) setUpdateCallback(callback func ([]Cell, int)) {
+func (s *Solver) SetUpdateCallback(callback func ([]Cell, int)) {
 	s.updateCallback = callback
 }
 
@@ -65,7 +65,7 @@ func (s *Solver) bruteForceSolve(regionIdx int, currQueens []Cell) []Cell {
 	return nil
 }
 
-func (s *Solver) getTotalComb() int {
+func (s *Solver) GetTotalCombinations() int {
 	if len(s.board.Regions)==0 {
 		return 0
 	}
