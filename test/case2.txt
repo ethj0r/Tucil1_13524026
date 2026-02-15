@@ -1,0 +1,4 @@
+AAAB
+ACBB
+CCDB
+DDDD
