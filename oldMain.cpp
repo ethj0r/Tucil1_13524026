@@ -10,7 +10,7 @@ vector<vector<int>> colors;
 bool isSafe(vector<vector<int>> &mat, int row, int col) {
     int n = mat.size();
 
-    //check row and col
+    //check row col
     for (int x=0; x<n; x++) {
         if (mat[row][x] ==1) return false;
     }
