@@ -17,6 +17,46 @@ func main() {
 	}
 }
 
+func runCLI() {
+	filename := getFilename()
+	
+	board, err := core.ParseBoard(filename)
+	if err != nil {
+		fmt.Printf("Error parsing board: %v\n", err)
+		return
+	}
+	
+	if err := core.ValidateInput(board); err != nil {
+		fmt.Printf("Invalid board: %v\n", err)
+		return
+	}
+	
+	board.PrintBoard()
+	fmt.Println()
+	
+	solver := core.NewSolver(board)
+	fmt.Println("Solving...")
+	result := solver.Solve()
+	
+	if !result.Found {
+		fmt.Println("No solution found!")
+		return
+	}
+	
+	board.PrintBoardWithQueens(result.Solution)
+	fmt.Printf("\nWaktu pencarian: %d ms\n", result.ExecutionTime.Milliseconds())
+	fmt.Printf("Banyak kasus yang ditinjau: %d kasus\n", result.Iterations)
+	
+	fmt.Print("\nApakah Anda ingin menyimpan solusi? (Ya/Tidak): ")
+	reader := bufio.NewReader(os.Stdin)
+	answer, _ := reader.ReadString('\n')
+	answer = strings.TrimSpace(strings.ToLower(answer))
+	
+	if answer == "ya" || answer == "y" {
+		saveSolution(board, result.Solution, filename)
+	}
+}
+
 func getFilename() string {
 	fmt.Println("Available test cases:")
 	files, err := os.ReadDir("test")
