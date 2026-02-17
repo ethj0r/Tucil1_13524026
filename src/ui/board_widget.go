@@ -18,6 +18,9 @@ type BoardWidget struct {
 }
 
 func NewBoardWidget(board *core.Board, queens []core.Cell) *BoardWidget {
+	if board == nil {
+		return nil
+	}
 	qmap := make(map[core.Cell]bool)
 	for _, q := range queens {
 		qmap[q] = true
@@ -29,6 +32,15 @@ func NewBoardWidget(board *core.Board, queens []core.Cell) *BoardWidget {
 	}
 	bw.ExtendBaseWidget(bw)
 	return bw
+}
+
+func (bw *BoardWidget) UpdateQueens(queens []core.Cell) {
+	qmap := make(map[core.Cell]bool)
+	for _, q := range queens {
+		qmap[q] = true
+	}
+	bw.queens = qmap
+	bw.Refresh()
 }
 
 func (bw *BoardWidget) CreateRenderer() fyne.WidgetRenderer {

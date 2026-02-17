@@ -60,17 +60,7 @@ func (a *App) openFileAndSolve() {
 			a.showErrorPage("Invalid board configuration:\n" + err.Error())
 			return
 		}
-
-		solver := core.NewSolver(board)
-		result := solver.Solve()
-
-		if !result.Found {
-			a.showErrorPage("No solution found!\nThe puzzle has no valid queen placement.")
-			return
-		}
-
-		playPage := a.buildPlaySuccessPage(board, &result)
-		a.showPlayPage(playPage)
+		a.showSolvingPage(board)
 
 	}, a.window)
 }
