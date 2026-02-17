@@ -42,10 +42,8 @@ func (s *Solver) Solve() SolverResult {
 		}
 		
 		if isValid(comb) {
-			if !found {
-				solution = comb
-				found =true
-			}
+			solution = comb
+			found = true
 		}
 	}
 	
@@ -57,32 +55,6 @@ func (s *Solver) Solve() SolverResult {
 	}
 }
 
-func (s *Solver) bruteForceSolve(regionIdx int, currQueens []Cell) []Cell {
-	if regionIdx==len(s.board.Regions) {
-		s.iterations++
-		if s.updateCallback!=nil && s.iterations%50==0 {
-			s.updateCallback(currQueens, s.iterations)
-		}
-		if isValid(currQueens) {
-			return currQueens
-		}
-		return nil
-	}
-
-	region := s.board.Regions[regionIdx]
-	for _, cell := range region.Cells {
-		newQueens := make([]Cell, len(currQueens))
-		copy(newQueens, currQueens)
-		newQueens = append(newQueens, cell)
-
-		res := s.bruteForceSolve(regionIdx+1, newQueens)
-		if res != nil {
-			return res
-		}
-	}
-	return nil
-}
-
 func (s *Solver) GetTotalCombinations() int {
 	if len(s.board.Regions)==0 {
 		return 0
@@ -92,33 +64,6 @@ func (s *Solver) GetTotalCombinations() int {
 		total *= len(region.Cells)
 	}
 	return total
-}
-
-func (s *Solver) solveWithAllComb() SolverResult {
-	startTime:=time.Now()
-	s.iterations=0
-
-	allComb := s.generateAllComb()
-	var solution []Cell
-	found:=false
-
-	for _, comb := range allComb {
-		s.iterations++
-		if s.updateCallback!=nil && s.iterations%50==0 {
-			s.updateCallback(comb, s.iterations)
-		}
-		if isValid(comb) {
-			solution = comb
-			found = true
-			break
-		}
-	}
-	return SolverResult{
-		Solution: solution,
-		Iterations: s.iterations,
-		ExecutionTime: time.Since(startTime),
-		Found: found,
-	}
 }
 
 func (s *Solver) generateAllComb() [][]Cell {
