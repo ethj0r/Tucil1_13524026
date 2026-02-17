@@ -25,10 +25,13 @@ func (a *App) buildPlaySuccessPage(board *core.Board, result *core.SolverResult)
 	playAgainBtn := a.makeNeonButton("Play Again", func() {
 		a.openFileAndSolve()
 	})
+	saveTxtBtn := a.makeNeonButton("Save TXT", func() {
+		a.saveSolution(board, result.Solution)
+	})
 	saveImgBtn := a.makeNeonButton("Save Image", func() {
 		a.saveSolutionAsImage(boardWidget)
 	})
-	btnRow := container.NewHBox(layout.NewSpacer(), playAgainBtn, saveImgBtn, layout.NewSpacer())
+	btnRow := container.NewHBox(layout.NewSpacer(), playAgainBtn, saveTxtBtn, saveImgBtn, layout.NewSpacer())
 
 	timeMs := result.ExecutionTime.Milliseconds()
 	timeText := fmt.Sprintf("Waktu pencarian: %d ms", timeMs)
