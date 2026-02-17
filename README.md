@@ -3,7 +3,7 @@
 ![Queens Home Screen](home.png)
 
 Program solver untuk puzzle Queens menggunakan pure Brute Force Algorithm.
-Queens adalah game logic yang tersedia pada situs jejaring profesional LinkedIn. Tujuan dari gim ini adalah menempatkan queen pada sebuah board persegi berwarna sehingga terdapat exactly satu queen pada tiap baris, kolom, dan region warna.
+Queens adalah game logic yang tersedia pada situs jejaring profesional LinkedIn. Tujuan dari game ini adalah menempatkan queen pada sebuah board persegi berwarna sehingga terdapat exactly satu queen pada tiap baris, kolom, dan region warna.
 Selain itu, satu queen tidak dapat ditempatkan bersebelahan dengan queen lainnya, termasuk secara diagonal.
 
 ## Requirements
@@ -15,14 +15,18 @@ Selain itu, satu queen tidak dapat ditempatkan bersebelahan dengan queen lainnya
 # Clone repo
 git clone https://github.com/ethj0r/Tucil1_13524026.git
 cd Tucil1_13524026
+```
 
 # Download dependencies
+```bash
 go mod tidy
 ```
 
 ## How to Build
 ```bash
 go build -o bin/queens src/main.go
+```
+
 ## How to Run
 
 ### GUI Mode (Default)
