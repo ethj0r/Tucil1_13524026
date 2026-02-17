@@ -15,10 +15,8 @@ Selain itu, satu queen tidak dapat ditempatkan bersebelahan dengan queen lainnya
 # Clone repo
 git clone https://github.com/ethj0r/Tucil1_13524026.git
 cd Tucil1_13524026
-```
 
 # Download dependencies
-```bash
 go mod tidy
 ```
 
@@ -71,34 +69,6 @@ FGIGDDHDD
 FGGGDDHHH
 ```
 
-## Struktur Project
-```
-Tucil1_13524026/
-├── bin/              # Executable file
-│   └── queens
-├── doc/              # Dokumentasi dan laporan
-├── src/              # Source code
-│   ├── main.go       # Entry point
-│   ├── core/         # Core logic
-│   │   ├── board.go      # Board representation
-│   │   ├── solver.go     # Brute force solver
-│   │   └── validator.go  # Input validation
-│   └── ui/           # User interface
-│       ├── gui.go        # Main GUI
-│       ├── home.go       # Home page
-│       ├── play.go       # Play page
-│       ├── board_widget.go # Board visualization
-│       └── assets/       # UI assets
-├── test/             # Test cases
-│   ├── case1.txt
-│   ├── case2.txt
-│   ├── case3.txt
-│   ├── case4.txt
-│   └── case5.txt
-├── go.mod            # Go module
-└── README.md
-```
-
 ## Author
-**Jordhy Branenda**
+**Made Branenda Jordhy**
 13524026 - Teknik Informatika '24 - ITB
