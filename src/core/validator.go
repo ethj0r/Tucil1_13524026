@@ -18,10 +18,9 @@ func isValid(queens []Cell) bool {
 				return false
 			}
 
-			// if math.Abs(float64(q1.Row-q2.Row)) == math.Abs(float64(q1.Col-q2.Col))
-			//check orthogonally adjacent
-			if (q1.Row==q2.Row && math.Abs(float64(q1.Col-q2.Col))==1 ||
-				q1.Col==q2.Col && math.Abs(float64(q1.Row-q2.Row))==1) {
+			rowDiff := math.Abs(float64(q1.Row - q2.Row))
+			colDiff := math.Abs(float64(q1.Col - q2.Col))
+			if rowDiff<=1 && colDiff<=1 {
 				return false
 			}
 		}
@@ -34,7 +33,7 @@ func validateInput(board *Board) error {
 		return fmt.Errorf("INVALID! %d regions but board is %d", len(board.Regions), board.Size)
 	}
 	for _, row := range board.Grid {
-		if len(row) != board.Size {
+		if len(row)!=board.Size {
 			return fmt.Errorf("Board is not square!")
 		}
 	}

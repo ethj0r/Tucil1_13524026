@@ -30,12 +30,30 @@ func (s *Solver) SetUpdateCallback(callback func ([]Cell, int)) {
 func (s *Solver) Solve() SolverResult {
 	startTime:=time.Now()
 	s.iterations=0
-	solution:=s.bruteForceSolve(0, []Cell{})
+	allCombinations := s.generateAllComb()
+	
+	var solution []Cell
+	found:=false
+
+	for _, comb:=range allCombinations {
+		s.iterations++
+		if s.updateCallback!=nil && s.iterations%50==0 {
+			s.updateCallback(comb, s.iterations)
+		}
+		
+		if isValid(comb) {
+			if !found {
+				solution = comb
+				found =true
+			}
+		}
+	}
+	
 	return SolverResult{
 		Solution: solution,
 		Iterations: s.iterations,
 		ExecutionTime: time.Since(startTime),
-		Found: solution != nil,
+		Found: found,
 	}
 }
 
