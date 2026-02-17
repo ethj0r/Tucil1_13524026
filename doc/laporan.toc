@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {1}Pendahuluan}{2}{section.1}%
+\contentsline {section}{\numberline {2}Dasar Teori}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Algoritma Brute Force}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Kompleksitas untuk Permainan Queens}{3}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Algoritma dan Implementasi}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Cara Kerja Algoritma}{4}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Langkah-Langkah}{4}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Gambaran Kode}{4}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Struktur Data}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Pure Brute Force tanpa Optimisasi}{6}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Hasil Pengujian}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Test Case 1: 9×9 Board}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Test Case 2: 8×8 Board}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Test Case 3: 7×7 Board}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Test Case 4: 6×6 Board}{9}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Test Case 5: 5×5 Board}{10}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Test Case 6: 4×4 Board}{10}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Test Case 7: 10×10 Board}{11}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.8}Test Case 8: 11×11 Board}{12}{subsection.4.8}%
+\contentsline {subsection}{\numberline {4.9}Test Case 9: 26×26 Board (Extreme)}{13}{subsection.4.9}%
+\contentsline {subsection}{\numberline {4.10}Test Case 10: 6×7 Board (Non-Square)}{14}{subsection.4.10}%
+\contentsline {subsection}{\numberline {4.11}Analisis Performa}{15}{subsection.4.11}%
+\contentsline {section}{\numberline {5}Kesimpulan}{16}{section.5}%
+\contentsline {section}{\numberline {6}Daftar Pustaka}{17}{section.6}%
+\contentsline {section}{\numberline {7}Lampiran}{18}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Checklist Pemenuhan Kriteria}{18}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Repository Source Code}{18}{subsection.7.2}%
