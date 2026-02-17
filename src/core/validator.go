@@ -28,7 +28,13 @@ func isValid(queens []Cell) bool {
 	return true
 }
 
-func validateInput(board *Board) error {
+func ValidateInput(board *Board) error {
+	if board == nil {
+		return fmt.Errorf("board is nil")
+	}
+	if board.Size <= 0 {
+		return fmt.Errorf("invalid board size: %d", board.Size)
+	}
 	if len(board.Regions) != board.Size {
 		return fmt.Errorf("INVALID! %d regions but board is %d", len(board.Regions), board.Size)
 	}
