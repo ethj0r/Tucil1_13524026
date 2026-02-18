@@ -31,7 +31,7 @@ type Board struct
 // @return Board struct yg sudah terisi data dari file input
 func ParseBoard(filename string) (*Board, error) {
 	file, err := os.Open(filename)
-	if err != nil {
+	if err!=nil {
 		return nil, fmt.Errorf("Failed to open file: %w", err)
 	}
 	defer file.Close()
@@ -40,7 +40,7 @@ func ParseBoard(filename string) (*Board, error) {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
-		if line != "" {
+		if line!="" {
 			lines = append(lines, line)
 		}
 	}
@@ -64,7 +64,7 @@ func ParseBoard(filename string) (*Board, error) {
 	for i, line := range lines {
 		grid[i] = []rune(line)
 		
-		for j, char := range grid[i] {
+		for j, char:=range grid[i] {
 			if !unicode.IsLetter(char) {
 				return nil, fmt.Errorf("Invalid character '%c' at position (%d, %d): only letters allowed", char, i, j)
 			}
@@ -83,8 +83,8 @@ func ParseBoard(filename string) (*Board, error) {
 
 func (b *Board) extractRegions() {
 	regionMap := make(map[rune][]Cell)
-	for row := 0; row < b.Size; row++ {
-		for col := 0; col < b.Size; col++ {
+	for row:=0; row<b.Size; row++ {
+		for col:=0; col<b.Size; col++ {
 			letter := b.Grid[row][col]
 			regionMap[letter] = append(regionMap[letter], Cell{Row: row, Col: col})
 		}
@@ -100,11 +100,11 @@ func (b *Board) extractRegions() {
 }
 
 func (b *Board) Validate() error {
-	if b.Size == 0 {
+	if b.Size==0 {
 		return fmt.Errorf("Board is empty")
 	}
 	for i, row := range b.Grid {
-		if len(row) != b.Size {
+		if len(row)!=b.Size {
 			return fmt.Errorf("Row %d has length %d, expected %d", i, len(row), b.Size)
 		}
 	}
@@ -114,17 +114,17 @@ func (b *Board) Validate() error {
 	}
 
 	for _, region := range b.Regions {
-		if len(region.Cells) == 0 {
+		if len(region.Cells)==0 {
 			return fmt.Errorf("Region '%c' has no cells", region.Letter)
 		}
 	}
 
 	totalCells := 0
-	for _, region := range b.Regions {
-		totalCells += len(region.Cells)
+	for _, region:=range b.Regions {
+		totalCells+=len(region.Cells)
 	}
 	expectedCells := b.Size*b.Size
-	if totalCells != expectedCells {
+	if totalCells!=expectedCells {
 		return fmt.Errorf("Invalid board: %d total cells, expected %d", totalCells, expectedCells)
 	}
 	
@@ -133,8 +133,8 @@ func (b *Board) Validate() error {
 
 func (b *Board) PrintBoard() {
 	fmt.Println("Board:")
-	for _, row := range b.Grid {
-		for _, cell := range row {
+	for _, row:=range b.Grid {
+		for _, cell:=range row {
 			fmt.Printf("%c ", cell)
 		}
 		fmt.Println()
@@ -142,7 +142,7 @@ func (b *Board) PrintBoard() {
 }
 
 func (b *Board) PrintBoardWithQueens(queens []Cell) {
-	queenMap := make(map[Cell]bool)
+	queenMap:=make(map[Cell]bool)
 	for _, q := range queens {
 		queenMap[q] = true
 	}
@@ -162,8 +162,8 @@ func (b *Board) PrintBoardWithQueens(queens []Cell) {
 }
 
 func (b *Board) GetRegionByLetter (letter rune) *Region {
-	for i := range b.Regions {
-		if b.Regions[i].Letter == letter {
+	for i:=range b.Regions {
+		if b.Regions[i].Letter==letter {
 			return &b.Regions[i]
 		}
 	}

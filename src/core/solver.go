@@ -59,9 +59,9 @@ func (s *Solver) GetTotalCombinations() int {
 	if len(s.board.Regions)==0 {
 		return 0
 	}
-	total := 1
-	for _, region := range s.board.Regions {
-		total *= len(region.Cells)
+	total:=1
+	for _, region:=range s.board.Regions {
+		total*=len(region.Cells)
 	}
 	return total
 }
@@ -85,9 +85,9 @@ func (s *Solver) generateAllComb() [][]Cell {
 
 func cartesianProduct(existing [][]Cell, newCells []Cell) [][]Cell {
 	res := [][]Cell{}
-	for _, combo := range existing {
-		for _, cell := range newCells {
-			newCombo := make([]Cell, len(combo))
+	for _, combo:=range existing {
+		for _, cell:=range newCells {
+			newCombo:=make([]Cell, len(combo))
 			copy(newCombo, combo)
 			newCombo = append(newCombo, cell)
 			res = append(res, newCombo)

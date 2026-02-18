@@ -18,8 +18,8 @@ func isValid(queens []Cell) bool {
 				return false
 			}
 
-			rowDiff := math.Abs(float64(q1.Row - q2.Row))
-			colDiff := math.Abs(float64(q1.Col - q2.Col))
+			rowDiff := math.Abs(float64(q1.Row-q2.Row))
+			colDiff := math.Abs(float64(q1.Col-q2.Col))
 			if rowDiff<=1 && colDiff<=1 {
 				return false
 			}
@@ -29,16 +29,16 @@ func isValid(queens []Cell) bool {
 }
 
 func ValidateInput(board *Board) error {
-	if board == nil {
+	if board==nil {
 		return fmt.Errorf("board is nil")
 	}
-	if board.Size <= 0 {
+	if board.Size<=0 {
 		return fmt.Errorf("invalid board size: %d", board.Size)
 	}
-	if len(board.Regions) != board.Size {
+	if len(board.Regions)!=board.Size {
 		return fmt.Errorf("INVALID! %d regions but board is %d", len(board.Regions), board.Size)
 	}
-	for _, row := range board.Grid {
+	for _, row:=range board.Grid {
 		if len(row)!=board.Size {
 			return fmt.Errorf("Board is not square!")
 		}
